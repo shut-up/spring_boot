@@ -3,12 +3,9 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class helloWorldController {
 
 //    //获取yml配置文件中的属性
@@ -22,9 +19,14 @@ public class helloWorldController {
     @Autowired
     GirlProperties girlProperties;
 
-    @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
-    public  String say(){
-//        return girlProperties.getCupSize()+ " " + girlProperties.getAge();
-        return "index";
+//     @PathVariable的请求路径为http://localhost:8080/hello/23
+//    @RequestMapping(value ={ "/hello/{id}"},method = RequestMethod.GET)
+//    public  String say(@PathVariable(value = "id")Integer id){
+
+//    RequestParam的请求路径为http://localhost:8080/hello?id=23，此时默认值位12
+    @RequestMapping(value ={ "/hello"},method = RequestMethod.GET)
+    public  String say(@RequestParam(value = "id",defaultValue = "12")Integer id){
+        return girlProperties.getCupSize()+ " " + girlProperties.getAge() + " "+ id;
+
     }
 }
