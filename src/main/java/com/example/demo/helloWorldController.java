@@ -2,12 +2,13 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class helloWorldController {
 
 //    //获取yml配置文件中的属性
@@ -23,6 +24,7 @@ public class helloWorldController {
 
     @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
     public  String say(){
-        return girlProperties.getCupSize()+ " " + girlProperties.getAge();
+//        return girlProperties.getCupSize()+ " " + girlProperties.getAge();
+        return "index";
     }
 }
